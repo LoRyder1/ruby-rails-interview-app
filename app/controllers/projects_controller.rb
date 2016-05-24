@@ -27,7 +27,7 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find(params[:id])
-    @project.update(projects_params)
+    @project.update(project_params)
     redirect_to projects_path
   end
 
@@ -38,7 +38,7 @@ class ProjectsController < ApplicationController
   end
 
   private
-  def projects_params
+  def project_params
     params.require(:project).permit(:name, :description)
   end
 end

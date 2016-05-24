@@ -1,5 +1,8 @@
 
 <h4><u><%=@project.name %></u> - <%=@project.description %></h4>
+<%= link_to 'Edit Project', edit_project_path %> |
+<%= link_to 'Destroy Project', project_path, method: :delete, data: {confirm: "Are you sure?"} %>
+
 <hr>
 
 <h5>Employee's Working on Project:</h5>
