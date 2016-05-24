@@ -9,3 +9,13 @@
     <li><i><%= employee.name%></i></li>
   <% end %>  
 </ul>
+
+<hr>
+
+<h5> Materials Needed for Project </h5>
+
+<ul>
+  <% @project.materials.each do |material| %>
+    <li><i><%= material.name  %></li>
+  <% end %>
+</ul>
