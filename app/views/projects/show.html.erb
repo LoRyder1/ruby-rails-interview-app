@@ -1,3 +1,11 @@
-<li>
-  
-</li>
+
+<h4><u><%=@project.name %></u> - <%=@project.description %></h4>
+<hr>
+
+<h5>Employee's Working on Project:</h5>
+
+<ul>
+  <% @project.users.each do |employee| %>
+    <li><i><%= employee.name%></i></li>
+  <% end %>  
+</ul>
