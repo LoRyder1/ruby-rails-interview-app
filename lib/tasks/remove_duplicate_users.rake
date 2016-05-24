@@ -1,6 +1,6 @@
 namespace :db do
 
-  desc "Testing 123"
+  desc "Destroy duplicate users"
   task :remove_duplicates => :environment do
 
     # To get all distinct email records ids
