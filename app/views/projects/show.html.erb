@@ -17,8 +17,14 @@
 
 <h5> Materials Needed for Project </h5>
 
+<%= link_to 'Add Material', new_project_project_material_path(@project) %>
+
 <ul>
-  <% @project.materials.each do |material| %>
-    <li><i><%= material.name  %></li>
+  <% @materials_count.each do |key, value| %>
+    <li><i><%= key.first %></i> | Quantity: <%= value %> |
+
+    <%= link_to 'Remove Material', project_project_material_path(@project, key.last), :method => :delete %>
+
+    </li> 
   <% end %>
 </ul>

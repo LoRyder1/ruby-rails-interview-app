@@ -27,6 +27,6 @@ Project.find_or_create_by(name: "Donna's Patio", description: "Donna is requesti
 Project.find_or_create_by(name: "Jake's House", description: "A ranch style house with a 2 door garage")
 Project.find_or_create_by(name: "Phils Moving Van", description: "Phil needs a custom van to move his stuff back to Ohio")
 
-Material.find_or_create_by(name: "lumber", project_id: 1)
-Material.find_or_create_by(name: "nails", project_id: 2)
-Material.find_or_create_by(name: "upholstery", project_id: 3)
+Material.find_or_create_by(name: "lumber")
+Material.find_or_create_by(name: "nails")
+Material.find_or_create_by(name: "upholstery")

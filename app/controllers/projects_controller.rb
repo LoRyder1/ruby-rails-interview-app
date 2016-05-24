@@ -6,6 +6,18 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    @project_materials = @project.materials
+
+    # put this logic in model
+    materials = []
+    @project_materials.each do |m|
+      materials << [m.name, m.id]
+    end
+    @materials_count = Hash.new(0)
+    materials.each do |key|
+      @materials_count[key]+=1
+    end
+    # raise @materials_count.inspect
   end
 
   def new

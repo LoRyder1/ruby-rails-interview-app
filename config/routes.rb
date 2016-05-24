@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
   resources :users
-  resources :projects
+  
+  resources :projects do
+    resources :project_materials
+  end
+
   resources :materials
 
   root 'static_pages#home'

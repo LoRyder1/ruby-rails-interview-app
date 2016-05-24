@@ -1,0 +1,9 @@
+<ul>
+  <% @materials.each do |material| %>
+
+  <li> <%= link_to "#{material.name}", project_project_materials_path(@project, material_id: "#{material.id}"), :method => :post %> </li>
+
+  <% end %>
+
+</ul>
+
