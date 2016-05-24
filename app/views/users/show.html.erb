@@ -1,4 +1,13 @@
 <div class="center hero-unit">
-  <%= @user.name %>
-  <%= link_to 'Edit', edit_user_path %>
+  <h4><%= @user.name %> <%= link_to 'Edit', edit_user_path %> </h4>
+  <hr>
+
+  <h5>Project Assignment:</h5>
+
+  <ul>
+    <% @user.projects.each do |project| %>
+      <li><i><%= project.name%></i></li>
+    <% end %>  
+  </ul>
+
 </div>
