@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
 
   resources :users
-  
+
   resources :projects do
+    resources :employee_projects
     resources :project_materials
   end
+
+  # get '/projects/:project_id/users/add', to: 'users#add_to_project', as: 'add_user'
 
   resources :materials
 

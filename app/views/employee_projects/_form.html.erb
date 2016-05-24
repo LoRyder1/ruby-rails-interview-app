@@ -1,0 +1,9 @@
+<ul>
+  <% @users.each do |user| %>
+
+  <li> <%= link_to "#{user.name}", project_employee_projects_path(@project, user_id: "#{user.id}"), :method => :post %> </li>
+
+  <% end %>
+
+</ul>
+
