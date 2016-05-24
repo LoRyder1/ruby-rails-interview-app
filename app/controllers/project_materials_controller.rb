@@ -9,11 +9,17 @@ class ProjectMaterialsController < ApplicationController
   def create
     @project = Project.find(params[:project_id])
     @project_material = ProjectMaterial.new(project_id: params[:project_id], material_id: params[:material_id])
-    
+
     if @project_material.save
       redirect_to project_path(@project)
     else
       render 'new'
     end
+  end
+
+  def destroy
+    @project = Project.find(params[:project_id])
+    @project_material = ProjectMaterial.where(project_id: params[:project_id] ,material_id: params[:id]).last.destroy
+    redirect_to project_path(@project)
   end
 end

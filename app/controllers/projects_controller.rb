@@ -17,7 +17,12 @@ class ProjectsController < ApplicationController
     materials.each do |key|
       @materials_count[key]+=1
     end
-    # raise @materials_count.inspect
+    mat_amount = Hash.new(0)
+    mat = Material.all
+    mat.each do |x|
+      mat_amount.store(x.name, x.amount)
+    end
+    # raise mat_amount.inspect
   end
 
   def new
