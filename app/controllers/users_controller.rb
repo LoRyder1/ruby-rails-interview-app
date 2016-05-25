@@ -16,10 +16,11 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash.now[:notice] = "#{@user.name.capitalize} has been created!"
+      redirect_to users_path
     else
       flash.now[:warning] = "No user has been created!"
+      render 'new'
     end
-    render 'new'
   end
 
   def update
