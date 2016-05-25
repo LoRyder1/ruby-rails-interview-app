@@ -2,7 +2,7 @@ class ProjectMaterialsController < ApplicationController
 
   def new
     @project = Project.find(params[:project_id])
-    @materials = Material.all
+    @materials = Material.all.paginate(:per_page => 5, :page => params[:page])
     @project_material = ProjectMaterial.new
   end
 

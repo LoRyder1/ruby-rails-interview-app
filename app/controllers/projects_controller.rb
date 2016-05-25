@@ -11,18 +11,12 @@ class ProjectsController < ApplicationController
     # put this logic in model
     materials = []
     @project_materials.each do |m|
-      materials << [m.name, m.id]
+      materials << [m.name, m.amount, m.id]
     end
+
     @materials_count = Hash.new(0)
-    materials.each do |key|
-      @materials_count[key]+=1
-    end
-    mat_amount = Hash.new(0)
-    mat = Material.all
-    mat.each do |x|
-      mat_amount.store(x.name, x.amount)
-    end
-    # raise mat_amount.inspect
+    materials.each{ |key| @materials_count[key]+=1 }
+    
   end
 
   def new

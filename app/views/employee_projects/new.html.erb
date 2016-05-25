@@ -1,5 +1,9 @@
 <h1> Add Employee To Project </h1>
+<hr>
 
 <%= render 'form' %>
 
+<%= will_paginate @users %>
+
+<br>
 <%= link_to 'Back', project_path(@project) %>

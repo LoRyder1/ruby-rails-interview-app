@@ -1,8 +1,7 @@
 class EmployeeProjectsController < ApplicationController
-
   def new
     @project = Project.find(params[:project_id])
-    @users = User.all
+    @users = User.all.paginate(:per_page => 5, :page => params[:page])
     @employee_project = EmployeeProject.new
   end
 

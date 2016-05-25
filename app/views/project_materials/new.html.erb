@@ -1,5 +1,12 @@
 <h1> Add Project Materials </h1>
+<hr>
 
 <%= render 'form' %>
 
+<%= will_paginate @materials %>
+
+<br>
 <%= link_to 'Back', project_path(@project) %>
+
+
+
