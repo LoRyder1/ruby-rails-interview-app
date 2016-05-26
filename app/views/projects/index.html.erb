@@ -1,8 +1,10 @@
-<h1>All Projects</h1>
-<%= will_paginate %>
+<h1>Projects</h1>
 
 <ul class="employees">
-  <%= link_to 'New Project', new_project_path %>
+  
+<hr>
+  <%= react_component 'Projects', { data: @projects } %>
+
   <%= render @projects %>
 </ul>
 

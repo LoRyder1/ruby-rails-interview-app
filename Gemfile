@@ -31,6 +31,9 @@ gem 'will_paginate', '~> 3.0.6'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+# react js framework gem
+gem 'react-rails', '~> 1.0'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
