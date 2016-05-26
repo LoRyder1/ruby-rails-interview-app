@@ -1,5 +1,8 @@
 
-<h4><u><%=@project.name %></u> - <%=@project.description %></h4>
+<h4>
+  <u><%=@project.name %></u> - <%=@project.description %>
+</h4>
+
 <%= link_to 'Edit Project', edit_project_path %> |
 <%= link_to 'Destroy Project', project_path, method: :delete, data: {confirm: "Are you sure?"} %>
 
@@ -26,10 +29,9 @@
 
 <ul>
   <% @materials_count.each do |key, value| %>
-    <li><i><%= key.first %></i> | Quantity: <%= value %> x <%= key[1] %> |
-
-    <%= link_to 'Remove Material', project_project_material_path(@project, key.last), :method => :delete %>
-
+    <li>
+      <i><%= key.first %></i> | Quantity: <%= value %> x <%= key[1] %> |
+      <%= link_to 'Remove Material', project_project_material_path(@project, key.last), :method => :delete %>
     </li> 
   <% end %>
 </ul>

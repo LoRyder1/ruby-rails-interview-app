@@ -1,0 +1,17 @@
+<h1> Sign In </h1>
+
+<%= form_tag login_path do %>
+
+  <p>
+    <%= text_field_tag :user_email, '', placeholder: 'email' %>
+  </p>
+
+  <p>
+    <%= password_field_tag :user_password, '', placeholder: 'password' %>
+  </p>
+
+  <p>
+    <%= submit_tag 'Login' %>
+  </p>
+  
+<% end %>
