@@ -5,10 +5,26 @@ this.Projects = React.createClass({
     };
   },
 
+  getDefaultProps: function() {
+    return { projects: [] };
+  },
+
+  updateProject: function(project, data) {
+    index = this.state.projects.indexOf(project);
+    projects = React.addons.update(this.state.projects, { $splice: [[index, 1, data]] });
+    this.replaceState({ projects: projects });
+  },
+
   addProject: function(project) {
     projects = this.state.projects.slice();
     projects.push(project);
     this.setState({projects: projects});
+  },
+
+  deleteProject: function(project) {
+    index = this.state.projects.indexOf(project);
+    projects = React.addons.update(this.state.projects, { $splice: [[index, 1]] });
+    this.replaceState({ projects: projects });
   },
 
   render: function() {
@@ -16,15 +32,11 @@ this.Projects = React.createClass({
     var items = this.state.projects;
 
     return (
-
       <div className="projects">
-
         <ProjectForm handleNewProject={this.addProject} />
-      
         {items.map(function(project, i) {
-          return <Project project={project} key={i} />
+          return <Project project={project} key={i} handleDeleteProject={el.deleteProject} handleEditProject={el.updateProject} />
         })}
-
       </div>
     )
   }
@@ -88,23 +100,92 @@ this.Project = React.createClass({
     return {edit: false }
   },
 
+  handleToggle: function(e) {
+    e.preventDefault();
+    this.setState({edit: !this.state.edit })
+  },
+
+  handleDelete: function(e) {
+    e.preventDefault();
+    var request = $.ajax({
+      method: 'DELETE',
+      url: "/projects/" + this.props.project.id,
+      dataType: 'JSON'
+    });
+
+    request.done( () => {
+      this.props.handleDeleteProject(this.props.project)
+    });
+  },
+
+  handleEdit: function(e) {
+    e.preventDefault();
+
+    var data = {
+      name: ReactDOM.findDOMNode(this.refs.name).value,
+      description: ReactDOM.findDOMNode(this.refs.description).value
+    };
+
+    var request = $.ajax({
+      method: 'PUT',
+      url: "/projects/" + this.props.project.id,
+      dataType: 'JSON',
+      data: { project: data }
+    });
+
+    request.done( (data) => {
+      this.setState({ edit: false });
+      this.props.handleEditProject(this.props.project, data);
+    })
+  },
+
+  projectForm: function() {
+    var propProject = this.props.project;
+
+    return (
+
+      <ul>
+        <hr />
+        <li>
+          <input className="form-control" type="text" defaultValue={propProject.name} ref="name" />
+        </li>
+        <li>
+          <input className="form-control" type="text" defaultValue={propProject.description} ref="description" />
+        </li>
+        <li>
+          <a className="btn btn-default" onClick={this.handleEdit}>Update </a>
+          <a className="btn btn-danger" onClick={this.handleToggle}>Cancel </a>
+        </li>
+      </ul>
+    )
+  },
 
   projectRow: function() {
     var propProject = this.props.project;
 
     return (
-      <hr>
-      <li>
-        <a href={"projects/" + propProject.id}>{propProject.name}</a>
-        <p>{propProject.description}</p>
-
-      </li>
-      </hr>
+      <ul>
+        <hr/>
+        <li>
+          <a href={"projects/" + propProject.id}>{propProject.name} </a>
+        </li>
+        <li>
+          {propProject.description}
+        </li>
+        <li>
+          <a className="btn btn-default" onClick={this.handleToggle}>Edit </a>
+          <a className="btn btn-danger" onClick={this.handleDelete}>Delete </a>
+        </li>
+      </ul>
     )
   },
 
   render: function() {
-    return this.projectRow();
+    if (this.state.edit) {
+      return this.projectForm();
+    } else {
+      return this.projectRow();
+    }
   }
 })
 

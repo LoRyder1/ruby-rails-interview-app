@@ -21,3 +21,8 @@
   border: 3px solid black;
   background-color: white;
 }
+
+ul {
+  list-style: none;
+}
+

@@ -30,8 +30,11 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find(params[:id])
-    @project.update(project_params)
-    redirect_to projects_path
+    if @project.update(project_params)
+      render json: @project
+    else
+      render json @project.errors, status: :unprocessable_entity
+    end
   end
 
   def destroy
