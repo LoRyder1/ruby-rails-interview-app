@@ -11,36 +11,30 @@ class ProjectsController < ApplicationController
     @materials_count = @project.get_material_count
   end
 
-  def new
-    @project = Project.new
-  end
-
-  def edit
-    @project = Project.find(params[:id])
-  end
-
-  def create
-    @project = Project.new(project_params)
-    if @project.save
-      redirect_to projects_path
-    else
-      render 'new'
-    end
-  end
-
   def update
     @project = Project.find(params[:id])
     if @project.update(project_params)
       render json: @project
     else
-      render json @project.errors, status: :unprocessable_entity
+      render json: @project.errors, status: :unprocessable_entity
+    end
+  end
+
+  def create
+    @project = Project.new(project_params)
+    if @project.save
+      render json: @project
+      head :no_content
+    else
+      render json: @project.errors, status: :unprocessable_entity
+      head :no_content
     end
   end
 
   def destroy
     @project = Project.find(params[:id])
     @project.destroy
-    redirect_to projects_path
+    head :no_content
   end
 
   private
