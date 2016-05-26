@@ -7,7 +7,7 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @project_materials = @project.materials
-    
+    # return a hash with name, amount, id and the freq(quantity) of material using model method get_material_count
     @materials_count = @project.get_material_count
   end
 

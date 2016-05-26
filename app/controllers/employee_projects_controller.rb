@@ -1,7 +1,8 @@
 class EmployeeProjectsController < ApplicationController
   def new
     @project = Project.find(params[:project_id])
-    @users = User.all.paginate(:per_page => 5, :page => params[:page])
+    # define users as employees that are not already selected, paginate is used on arrays with config/initializers/will_paginate_array_fix.rb
+    @users = (User.all - @project.users).paginate(:per_page => 5, :page => params[:page])
     @employee_project = EmployeeProject.new
   end
 
