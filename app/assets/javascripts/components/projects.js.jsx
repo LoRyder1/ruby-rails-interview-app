@@ -20,7 +20,10 @@ this.Projects = React.createClass({
       <div className="projects">
 
         <ProjectForm handleNewProject={this.addProject} />
-
+      
+        {items.map(function(project, i) {
+          return <Project project={project} key={i} />
+        })}
 
       </div>
     )
@@ -77,4 +80,38 @@ this.ProjectForm = React.createClass({
     )
   }
 })
+
+// ====================//====================//================//============
+
+this.Project = React.createClass({
+  getInitialState: function() {
+    return {edit: false }
+  },
+
+
+  projectRow: function() {
+    var propProject = this.props.project;
+
+    return (
+      <hr>
+      <li>
+        <a href={"projects/" + propProject.id}>{propProject.name}</a>
+        <p>{propProject.description}</p>
+
+      </li>
+      </hr>
+    )
+  },
+
+  render: function() {
+    return this.projectRow();
+  }
+})
+
+
+
+
+
+
+
 
