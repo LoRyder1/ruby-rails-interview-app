@@ -9,18 +9,49 @@
       Jill just got married and needs to change her name.  The current app does not allow this action to happen.
       Allow updates to the employees.
     </li>
+    <hr>
+      <i>
+        Added simple edit and update action in the User controller. Also added User authentication so only a created user can change user details. It may be desirable for only the current logged in user to change their own details. 
+      </i>
+    <hr>
     <li>
       We've noticed duplicate users on the Users index page. Write a rake task to clean these entries up and put in
       a fix to not allow this to happen.
     </li>
+    <hr>
+      <i>
+        Created a rake task remove duplicate users. First collected all users with distinct emails and names. Next I destroyed users that were not distinct using .not syntax. The fix for this particular error is create a validation for uniqueness in the User model for name and email.
+      </i>
+    <hr>
     <li>
       We currently have a excel list of all employees working on each project.  We would like to see this data in
       the app.  Each project should list the employees working on the project and each employee should show which projects
       they are working on.
     </li>
+    <hr>
+      <i>
+        Users to Projects have a many to many association through the table Employee_Project. Employee_Project is the join table for other two tables. For the index page for projects I used the react js framework. I used react because I feel like it works great with rails, easily understandable, maintable, and efficient in terms of performance. When adding users to a project only users that are available are visible - this is scoped in the controller action and then the array is paginated (required a workaround).
+      </i>
+    <hr>
     <li>
       Each project has a list of materials.  Define the model and relationships.  Each project should show the materials needed
       to complete the project.  We would also like to have an inventory page to keep track of all our materials.
     </li>
+    <hr>
+      <i>
+        Project to Materials is another many to many association through the table Project_Material. The show action for projects includes a model method get_material_count which returns a hash with name, amount, id, and freq(quantity) of materials associated with that instance of a project. This is done so you can display 5 instances of 100 bricks in one line instead of multiple lines for the same material. This would be important especially if you can only purchase bricks in 100 increments. If you need less a new material instance of bricks needs to be created. All new records in Controller are created using strong parameters in a private method for security purposes (encapsulation).
+      </i>
+    <hr>
+      <p><b>Importing CSVs</b></p>
+      <i>
+        Two more import rake tasks were created to import Employee_projects.csv and materials.csv. Importing the CSV was done using the CSV library foreach method. It is assumed Users and Projects already are seeded in database or already created. Materials are either found or created from the CSV. The rake task outputs a running count of employee_projects or project_materials created along with number of rows in CSV.
+      </i>
+    <hr>
+      <p><b>Model Tests</b></p>
+      <i>
+        The rspec testing framework was set up to test the lone model method (get_material_count). Factory Girl was also set up to create valid Ruby objects, to keep object creation flexible and dry for future tests. Associations were not tested because Active Record and Rails has a pretty robust testing of associations already. Debugging was done using the gem 'pry' = binding.pry.
+      </i>
+    <hr>
+
   </ol>
 </div>

@@ -1,4 +1,5 @@
 class Project < ActiveRecord::Base
+  validates :name, :description, presence: true
   has_many :employee_projects, dependent: :destroy
   has_many :users, through: :employee_projects
   has_many :project_materials, dependent: :destroy

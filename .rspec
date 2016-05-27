@@ -1,0 +1,8 @@
+-fd
+--order rand
+--color
+--require spec_helper
+--require rails_helper
+--require support/factory_girl
+--require pry
+
