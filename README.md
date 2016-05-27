@@ -18,6 +18,9 @@ Good Luck!
 $ bundle install
 $ rake db:migrate
 $ rake db:seed
+$ rake db:remove_duplicates
+$ rake import:employee_projects
+$ rake import:project_materials
 ```
 3. Run the Server
 
